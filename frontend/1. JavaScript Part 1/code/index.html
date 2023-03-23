@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+      body {
+        background-color: #081f3f;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4285f2;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 50px 0;
+      }
+
+      button {
+        font-size: 24px;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #3ddb84;
+      }
+
+      button:hover {
+        background-color: #081f3f;
+        color: white;
+      }
+
+      #count {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0 20px;
+      }
+      .form {
+        display: flex;
+        gap: 8px;
+      }
+      .set-increase {
+        padding: 5px 15px;
+        font-size: 16px;
+      }
+      .amount-input {
+        padding: 10px 10px;
+        border: 1px solid #4285f2;
+      }
+      .amount-input:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 id="counter">Counter</h1>
+      <h2>Action value <span id="actionValue"></span></h2>
+      <div class="counter">
+        <button id="decrease">-</button>
+        <span id="count">0</span>
+        <button id="increase">+</button>
+      </div>
+      <div class="form">
+        <input
+          type="number"
+          class="amount-input"
+          placeholder="Please specify the amount"
+        />
+        <button class="set-increase" id="set-amount">Set</button>
+      </div>
+    </div>
+
+    <script>
+      let actionAmount = 1;
+      const countValue = document.getElementById("count");
+      const increaseBtn = document.getElementById("increase");
+      const decreaseBtn = document.getElementById("decrease");
+      const inputElement = document.querySelector(".form input");
+      const setBtn = document.getElementById("set-amount");
+      const actionValue = document.getElementById("actionValue");
+
+      actionValue.innerHTML = actionAmount;
+
+      setBtn.onclick = () => {
+        actionAmount = inputElement.valueAsNumber;
+        actionValue.innerHTML = inputElement.value;
+        inputElement.value = "";
+      };
+
+      increaseBtn.onclick = () => {
+        countValue.innerHTML = parseInt(countValue.innerHTML) + actionAmount;
+      };
+
+      decreaseBtn.addEventListener("click", () => {
+        countValue.innerHTML = parseInt(countValue.innerHTML) - actionAmount;
+      });
+    </script>
+  </body>
+</html>
