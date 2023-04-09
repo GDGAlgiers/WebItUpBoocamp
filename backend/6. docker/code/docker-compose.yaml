@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: frontmain
+    ports:
+      - "3000:3000"
+    networks:
+      - overlay
+
+  api:
+    image: dlapi:0.0.4
+    networks:
+       - overlay
+    ports:
+      - "8000:8000"
+
+networks:
+  overlay:
